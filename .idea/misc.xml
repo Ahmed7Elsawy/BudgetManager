@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ic_home_24.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/fragment_add_action.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_summary.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/summary_fragment.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.17552083333333332" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

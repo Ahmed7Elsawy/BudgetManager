@@ -2,18 +2,13 @@ package com.elsawy.budgetmanager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
-import com.elsawy.budgetmanager.data.local.Action
+import androidx.core.view.get
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.elsawy.budgetmanager.data.local.ActionDao
-import com.elsawy.budgetmanager.data.local.Category
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,5 +20,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener{
+        }
+
+        setupBottomNavigation()
+
+    }
+
+    private fun setupBottomNavigation() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.background = null
+        bottomNavigationView.menu.get(1).isEnabled = false
+        val navController = findNavController(R.id.nav_fragment)
+        bottomNavigationView.setupWithNavController(navController)
     }
 }
