@@ -22,4 +22,13 @@
     <style name="Theme.BudgetManager.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.BudgetManager.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="action_item_textview">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/DarkerButtonBlue</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 </resources>

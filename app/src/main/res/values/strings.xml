@@ -17,6 +17,11 @@
     <string name="utilities">Utilities</string>
     <string name="entertainment">Entertainment</string>
     <string name="groceries">Groceries</string>
+    <string name="date">Date</string>
+    <string name="category">Category</string>
+    <string name="description">Description</string>
+    <string name="amount">Amount</string>
+    <string name="balance">Balance</string>
 
 
 </resources>

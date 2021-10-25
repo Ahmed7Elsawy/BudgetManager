@@ -15,11 +15,3 @@ data class Action(
     val aid: Int = 0,
 )
 
-enum class Category {
-    INCOME,
-    MORTGAGE,
-    UTILITIES,
-    GROCERIES,
-    ENTERTAINMENT
-}
-
