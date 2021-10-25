@@ -13,12 +13,10 @@ class SummaryViewModel @ViewModelScoped constructor(
     private val repository: ActionRepository,
 ) : ViewModel() {
 
-//    val allActions: LiveData<List<Action>> = repository.allActions.asLiveData()
-
     private var _allActions = MutableLiveData<List<Action>>()
     var allActions: LiveData<List<Action>> = _allActions
 
-     fun getActionsByCategory(category: Category)//: Flow<List<Action>>
+     fun getActionsByCategory(category: Category)
      {
         viewModelScope.launch {
 
