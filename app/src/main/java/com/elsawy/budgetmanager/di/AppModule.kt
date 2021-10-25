@@ -8,6 +8,8 @@ import com.elsawy.budgetmanager.Repositories.ActionRepositoryImpl
 import com.elsawy.budgetmanager.data.local.ActionDao
 import com.elsawy.budgetmanager.data.local.ActionDatabase
 import com.elsawy.budgetmanager.ui.Main.MainActivityViewModel
+import com.elsawy.budgetmanager.ui.home.HomeViewModel
+import com.elsawy.budgetmanager.ui.summary.SummaryViewModel
 import com.elsawy.budgetmanager.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -33,6 +35,18 @@ object AppModule {
         repository: ActionRepository,
         sharedPreferences: PreferencesHelper,
     ) = MainActivityViewModel(repository, sharedPreferences)
+
+    @Singleton
+    @Provides
+    fun provideHomeViewModel(
+        repository: ActionRepository
+    ) = HomeViewModel(repository)
+
+    @Singleton
+    @Provides
+    fun provideSummaryViewModel(
+        repository: ActionRepository
+    ) = SummaryViewModel(repository)
 
     @Singleton
     @Provides
