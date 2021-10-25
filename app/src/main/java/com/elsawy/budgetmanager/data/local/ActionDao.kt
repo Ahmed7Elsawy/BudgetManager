@@ -19,8 +19,8 @@ interface ActionDao {
     @Query("SELECT * FROM actions_table where date >= :end")
     fun getActionsInTime(end:Long): LiveData<List<Action>>
 
-    @Query("SELECT * FROM actions_table where date >= :category")
-    fun getActionsByCategory(category: Category): LiveData<List<Action>>
+    @Query("SELECT * FROM actions_table where category = :category")
+    fun getActionsByCategory(category: Category): Flow<List<Action>>
 
 
 
