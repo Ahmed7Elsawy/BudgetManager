@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/income"
+        android:title="@string/income" />
+    <item
+        android:id="@+id/mortgage"
+        android:title="@string/mortgage" />
+    <item
+        android:id="@+id/utilities"
+        android:title="@string/utilities" />
+    <item
+        android:id="@+id/groceries"
+        android:title="@string/groceries" />
+    <item
+        android:id="@+id/entertainment"
+        android:title="@string/entertainment" />
+
+</menu>

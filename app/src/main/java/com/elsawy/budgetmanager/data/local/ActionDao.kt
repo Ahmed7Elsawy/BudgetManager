@@ -12,6 +12,10 @@ interface ActionDao {
     @Insert
     fun insertAction(action: Action)
 
+    @Query("SELECT balance FROM actions ORDER BY aid DESC LIMIT 1")
+    fun getBalance(): LiveData<Double>
+
+
     @Query("SELECT * FROM actions")
     fun getAllActions(): LiveData<List<Action>>
 

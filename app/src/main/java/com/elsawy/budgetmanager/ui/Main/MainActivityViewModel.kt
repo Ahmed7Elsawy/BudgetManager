@@ -1,5 +1,6 @@
-package com.elsawy.budgetmanager.ui.addAction
+package com.elsawy.budgetmanager.ui.Main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elsawy.ahmed.news.data.provider.PreferencesHelper
@@ -10,7 +11,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AddActionViewModel @ViewModelScoped constructor(
+class MainActivityViewModel @ViewModelScoped constructor(
     private val repository: ActionRepository,
     private val sharedPreferences: PreferencesHelper,
 ) : ViewModel() {
@@ -26,6 +27,7 @@ class AddActionViewModel @ViewModelScoped constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertActionItem(action)
         }
+        Log.d("ActionVM",action.toString())
     }
 
 

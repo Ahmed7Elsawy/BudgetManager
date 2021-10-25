@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.addAction.AddActionActivity"
-    >
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/date_image"
@@ -18,13 +16,15 @@
         />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/select_date_textview"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Select Date:"
+        android:text="Date:"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/date_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
 
     <TextView
         android:id="@+id/date_textview"
@@ -35,7 +35,9 @@
         android:text=""
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="2"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +47,7 @@
         android:textSize="20sp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/date_image" />
+        app:layout_constraintTop_toBottomOf="@id/select_date_textview" />
 
     <TextView
         android:id="@+id/category_textview"
@@ -80,6 +82,7 @@
         android:layout_marginStart="50dp"
         android:textSize="20sp"
         android:maxLines="2"
+        android:hint="Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/description_textview"
         app:layout_constraintTop_toBottomOf="@id/category_textview" />
@@ -105,9 +108,11 @@
         android:padding="8dp"
         android:layout_marginStart="50dp"
         android:textSize="20sp"
-        android:maxLines="2"
+        android:maxLines="1"
+        android:hint="Amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/description_textview"
         app:layout_constraintTop_toBottomOf="@id/description_textview" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
