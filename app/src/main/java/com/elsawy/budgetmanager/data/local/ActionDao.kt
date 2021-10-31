@@ -18,15 +18,15 @@ interface ActionDao {
     fun getAllActions(): Flow<List<Action>>
 
     @Query("SELECT * FROM actions_table where date >= :end")
-    fun getActionsInTime(end:Long): LiveData<List<Action>>
+    fun getActionsInTime(end: Long): LiveData<List<Action>>
 
     @Query("SELECT * FROM actions_table where category = :category")
     fun getActionsByCategory(category: Category): Flow<List<Action>>
 
     @Query("SELECT sum(amount) FROM actions_table where date >= :date AND category = :category ")
-    fun getIncomeInTime(date: Date,category: Category = Category.INCOME): Flow<Double>
+    fun getIncomeInTime(date: Date, category: Category = Category.INCOME): Flow<Double>
 
-
-
+    @Query("SELECT sum(amount) FROM actions_table where date >= :date AND category != :category ")
+    fun getPaidUpInTime(date: Date, category: Category = Category.INCOME): Flow<Double>
 
 }

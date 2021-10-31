@@ -15,13 +15,14 @@ class ActionRepositoryImpl @Inject constructor(
 
     override val allActions: Flow<List<Action>> = actionDao.getAllActions()
 
-    override suspend fun insertActionItem(action: Action) {
-        actionDao.insertAction(action)
-    }
+    override suspend fun insertActionItem(action: Action) = actionDao.insertAction(action)
 
-    override suspend fun getActionsByCategory(category: Category): Flow<List<Action>> = actionDao.getActionsByCategory(category)
+    override suspend fun getActionsByCategory(category: Category): Flow<List<Action>> =
+        actionDao.getActionsByCategory(category)
 
     override suspend fun getIncomeInTime(date: Date): Flow<Double> = actionDao.getIncomeInTime(date)
+
+    override suspend fun getPaidUpInTime(date: Date): Flow<Double> = actionDao.getPaidUpInTime(date)
 
 
 }

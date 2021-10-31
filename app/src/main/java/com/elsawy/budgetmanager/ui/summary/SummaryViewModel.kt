@@ -24,6 +24,13 @@ class SummaryViewModel @Inject constructor(
         }
     }
 
+    fun getPaidUp(date: Date): LiveData<Double> = liveData {
+        val data = repository.getPaidUpInTime(date)
+        data.collect {
+            emit(it)
+        }
+    }
+
 
 
     var _allActions = MutableLiveData<List<Action>>()

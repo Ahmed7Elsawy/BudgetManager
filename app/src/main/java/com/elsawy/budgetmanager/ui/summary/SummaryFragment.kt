@@ -38,9 +38,15 @@ class SummaryFragment : Fragment() {
 //        }
 
         val date = Date(1630717008000)
-        summaryViewModel.getIncome(date).observe(viewLifecycleOwner){ income->
-                Log.d("Summary",income.toString())
+
+        summaryViewModel.getIncome(date).observe(viewLifecycleOwner) { income ->
+            Log.d("Summary income", income.toString())
         }
+
+        summaryViewModel.getPaidUp(date).observe(viewLifecycleOwner) { paid ->
+            Log.d("Summary paid up", paid.toString())
+        }
+
 
     }
 
