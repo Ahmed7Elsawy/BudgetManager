@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.elsawy.budgetmanager.R
@@ -19,12 +20,21 @@ import javax.inject.Inject
 class SummaryFragment : Fragment() {
 
     private val summaryViewModel: SummaryViewModel by viewModels()
+    private lateinit var incomeTextView: TextView
+    private lateinit var paidUpTextView: TextView
+    private lateinit var savedMoneyTextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.fragment_summary, container, false)
+        val view = inflater.inflate(R.layout.fragment_summary, container, false)
+
+        incomeTextView = view.findViewById(R.id.income_textview)
+        paidUpTextView = view.findViewById(R.id.paid_up_textview)
+        savedMoneyTextView = view.findViewById(R.id.saved_textview)
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,14 +51,17 @@ class SummaryFragment : Fragment() {
 
         summaryViewModel.getIncome(date).observe(viewLifecycleOwner) { income ->
             Log.d("Summary income", income.toString())
+            incomeTextView.text = "your income in this time is $income."
         }
 
         summaryViewModel.getPaidUp(date).observe(viewLifecycleOwner) { paid ->
             Log.d("Summary paid up", paid.toString())
+            paidUpTextView.text = "you spent $paid in this time."
         }
 
         summaryViewModel.getSavedMoney(date).observe(viewLifecycleOwner) { saved ->
             Log.d("Summary savedMoney", saved.toString())
+            savedMoneyTextView.text = "you saved $saved in this time."
         }
 
     }
