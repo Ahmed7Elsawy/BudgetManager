@@ -30,6 +30,7 @@ class HomeActionsAdapter : RecyclerView.Adapter<HomeActionsAdapter.ViewHolder>()
 
     fun updateActionList(actions: List<Action>) {
         actionList = actions
+        notifyDataSetChanged();
     }
 
     override fun getItemCount() = actionList.size

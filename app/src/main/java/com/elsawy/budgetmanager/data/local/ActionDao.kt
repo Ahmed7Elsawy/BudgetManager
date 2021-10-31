@@ -14,7 +14,7 @@ interface ActionDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAction(action: Action)
 
-    @Query("SELECT * FROM actions_table")
+    @Query("SELECT * FROM actions_table ORDER BY date DESC")
     fun getAllActions(): Flow<List<Action>>
 
     @Query("SELECT * FROM actions_table where date >= :end")

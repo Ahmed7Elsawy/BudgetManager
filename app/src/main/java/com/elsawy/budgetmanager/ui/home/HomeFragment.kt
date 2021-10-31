@@ -25,17 +25,17 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var homeActionsAdapter: HomeActionsAdapter
-
+    private lateinit var tableHeader: LinearLayout
+    private lateinit var recyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        val tableHeader: LinearLayout = view.findViewById(R.id.table_header)
-        val recyclerView: RecyclerView = view.findViewById(R.id.home_recycler_view)
-        homeActionsAdapter = HomeActionsAdapter()
+        tableHeader = view.findViewById(R.id.table_header)
+        recyclerView = view.findViewById(R.id.home_recycler_view)
         recyclerView.itemAnimator = DefaultItemAnimator()
+        homeActionsAdapter = HomeActionsAdapter()
         recyclerView.adapter = homeActionsAdapter
 
         homeViewModel.allActions.observe(viewLifecycleOwner) { actions ->
@@ -48,10 +48,6 @@ class HomeFragment : Fragment() {
         }
 
         return view
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
 }
