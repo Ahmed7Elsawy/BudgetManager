@@ -12,6 +12,7 @@ import com.elsawy.budgetmanager.R
 import com.elsawy.budgetmanager.data.local.Category
 import com.elsawy.budgetmanager.ui.Main.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -30,10 +31,15 @@ class SummaryFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         summaryViewModel.getActionsByCategory(Category.INCOME)
-        summaryViewModel.allActions.observe(viewLifecycleOwner){ actions->
-            actions.forEach{
-                Log.d("Summary",it.toString())
-            }
+//        summaryViewModel.allActions.observe(viewLifecycleOwner){ actions->
+//            actions.forEach{
+//                Log.d("Summary",it.toString())
+//            }
+//        }
+
+        val date = Date(1630717008000)
+        summaryViewModel.getIncome(date).observe(viewLifecycleOwner){ income->
+                Log.d("Summary",income.toString())
         }
 
     }

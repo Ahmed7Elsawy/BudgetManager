@@ -14,20 +14,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SummaryViewModel @Inject constructor(
-    private val repository: ActionRepository
+    private val repository: ActionRepository,
 ) : ViewModel() {
 
-    val result: LiveData<Double> = liveData {
-        val date = Date()
-        val data = repository.getIncomeInTime(date).asLiveData()
-//        emit(data)
+    fun getIncome(date: Date): LiveData<Double> = liveData {
+        val data = repository.getIncomeInTime(date)
+        data.collect {
+            emit(it)
+        }
     }
 
-    private var _allActions = MutableLiveData<List<Action>>()
+
+
+    var _allActions = MutableLiveData<List<Action>>()
     var allActions: LiveData<List<Action>> = _allActions
 
-     fun getActionsByCategory(category: Category)
-     {
+    fun getActionsByCategory(category: Category) {
         viewModelScope.launch {
 
             repository.getActionsByCategory(category).collect {
@@ -38,14 +40,6 @@ class SummaryViewModel @Inject constructor(
             }
         }
     }
-
-//    fun getIncomeInTime(date: Date): LiveData<Double>{
-//
-//        viewModelScope.launch {
-//            val income = repository.getIncomeInTime(date).asLiveData()
-//
-//        }
-//    }
 
 
 }

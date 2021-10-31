@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.elsawy.budgetmanager.R
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.ui.Main.MainActivityViewModel
-import com.elsawy.budgetmanager.ui.summary.SummaryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
