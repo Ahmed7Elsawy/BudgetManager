@@ -4,8 +4,11 @@ import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.ActionDao
 import com.elsawy.budgetmanager.data.local.Category
 import kotlinx.coroutines.flow.Flow
+import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+//@Singleton
 class ActionRepositoryImpl @Inject constructor(
     private val actionDao: ActionDao,
 ) : ActionRepository {
@@ -17,6 +20,8 @@ class ActionRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getActionsByCategory(category: Category): Flow<List<Action>> = actionDao.getActionsByCategory(category)
+
+    override suspend fun getIncomeInTime(date: Date): Flow<Double> = actionDao.getIncomeInTime(date)
 
 
 }

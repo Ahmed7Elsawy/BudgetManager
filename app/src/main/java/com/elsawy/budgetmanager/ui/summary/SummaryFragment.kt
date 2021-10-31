@@ -6,16 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import com.elsawy.budgetmanager.R
 import com.elsawy.budgetmanager.data.local.Category
+import com.elsawy.budgetmanager.ui.Main.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class SummaryFragment : Fragment() {
 
-    @Inject
-    lateinit var summaryViewModel: SummaryViewModel
+    private val summaryViewModel: SummaryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

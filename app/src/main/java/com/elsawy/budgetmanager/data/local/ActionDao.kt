@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
+import java.util.*
 
 @Dao
 interface ActionDao {
@@ -21,6 +22,9 @@ interface ActionDao {
 
     @Query("SELECT * FROM actions_table where category = :category")
     fun getActionsByCategory(category: Category): Flow<List<Action>>
+
+    @Query("SELECT sum(amount) FROM actions_table where category = :category and date >= :date ")
+    fun getIncomeInTime(date: Date,category: Category = Category.INCOME): Flow<Double>
 
 
 

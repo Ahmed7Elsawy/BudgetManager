@@ -3,6 +3,7 @@ package com.elsawy.budgetmanager.Repositories
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
 import kotlinx.coroutines.flow.Flow
+import java.util.*
 
 interface ActionRepository {
 
@@ -11,4 +12,7 @@ interface ActionRepository {
     suspend fun insertActionItem(action: Action)
 
     suspend fun getActionsByCategory(category: Category): Flow<List<Action>>
+
+    suspend fun getIncomeInTime(date: Date): Flow<Double>
+
 }

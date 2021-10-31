@@ -7,11 +7,14 @@ import com.elsawy.ahmed.news.data.provider.PreferencesHelper
 import com.elsawy.budgetmanager.Repositories.ActionRepository
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainActivityViewModel @ViewModelScoped constructor(
+@HiltViewModel
+class MainActivityViewModel @Inject constructor(
     private val repository: ActionRepository,
     private val sharedPreferences: PreferencesHelper,
 ) : ViewModel() {

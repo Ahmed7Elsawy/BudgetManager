@@ -5,13 +5,23 @@ import androidx.lifecycle.*
 import com.elsawy.budgetmanager.Repositories.ActionRepository
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
+import javax.inject.Inject
 
-class SummaryViewModel @ViewModelScoped constructor(
-    private val repository: ActionRepository,
+@HiltViewModel
+class SummaryViewModel @Inject constructor(
+    private val repository: ActionRepository
 ) : ViewModel() {
+
+    val result: LiveData<Double> = liveData {
+        val date = Date()
+        val data = repository.getIncomeInTime(date).asLiveData()
+//        emit(data)
+    }
 
     private var _allActions = MutableLiveData<List<Action>>()
     var allActions: LiveData<List<Action>> = _allActions
@@ -28,5 +38,14 @@ class SummaryViewModel @ViewModelScoped constructor(
             }
         }
     }
+
+//    fun getIncomeInTime(date: Date): LiveData<Double>{
+//
+//        viewModelScope.launch {
+//            val income = repository.getIncomeInTime(date).asLiveData()
+//
+//        }
+//    }
+
 
 }

@@ -6,7 +6,13 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#EFF3F4</color>
+
+    <color name="replay_blue_700">#344955</color>
+    <color name="replay_blue_800">#232F34</color>
+    <color name="replay_blue_600">#4A6572</color>
+    <color name="replay_blue_200">#4A6572</color>
+    <color name="replay_orange_500">#F9AA33</color>
 
 
     <color name="TextWhite">#ffeeeeee</color>

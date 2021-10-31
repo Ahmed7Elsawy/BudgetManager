@@ -23,50 +23,31 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideActionDatabase(
-        @ApplicationContext context: Context,
+        @ApplicationContext context: Context
     ) = Room.databaseBuilder(context, ActionDatabase::class.java, DATABASE_NAME).build()
 
-    @Singleton
     @Provides
-    fun provideMainActivityViewModel(
-        repository: ActionRepository,
-        sharedPreferences: PreferencesHelper,
-    ) = MainActivityViewModel(repository, sharedPreferences)
-
     @Singleton
-    @Provides
-    fun provideHomeViewModel(
-        repository: ActionRepository
-    ) = HomeViewModel(repository)
-
-    @Singleton
-    @Provides
-    fun provideSummaryViewModel(
-        repository: ActionRepository
-    ) = SummaryViewModel(repository)
-
-    @Singleton
-    @Provides
     fun provideSharedPreferences(
-        @ApplicationContext context: Context,
+        @ApplicationContext context: Context
     ): PreferencesHelper {
         PreferencesHelper.init(context)
         return PreferencesHelper
     }
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideActionDao(
-        database: ActionDatabase,
+        database: ActionDatabase
     ) = database.actionDao()
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideActionRepository(
-        dao: ActionDao,
+        dao: ActionDao
     ) = ActionRepositoryImpl(dao) as ActionRepository
 
 }
