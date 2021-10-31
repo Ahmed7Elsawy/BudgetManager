@@ -17,20 +17,26 @@ class SummaryViewModel @Inject constructor(
     private val repository: ActionRepository,
 ) : ViewModel() {
 
-    fun getIncome(date: Date): LiveData<Double> = liveData {
+    fun getIncome(date: Date) = liveData {
         val data = repository.getIncomeInTime(date)
         data.collect {
             emit(it)
         }
     }
 
-    fun getPaidUp(date: Date): LiveData<Double> = liveData {
+    fun getPaidUp(date: Date) = liveData {
         val data = repository.getPaidUpInTime(date)
         data.collect {
             emit(it)
         }
     }
 
+    fun getSavedMoney(date: Date) = liveData {
+        val data = repository.getSavedMoneyInTime(date)
+        data.collect {
+            emit(it)
+        }
+    }
 
 
     var _allActions = MutableLiveData<List<Action>>()

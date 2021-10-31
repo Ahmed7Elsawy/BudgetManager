@@ -47,6 +47,9 @@ class SummaryFragment : Fragment() {
             Log.d("Summary paid up", paid.toString())
         }
 
+        summaryViewModel.getSavedMoney(date).observe(viewLifecycleOwner) { saved ->
+            Log.d("Summary savedMoney", saved.toString())
+        }
 
     }
 

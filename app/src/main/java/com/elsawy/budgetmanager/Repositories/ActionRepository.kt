@@ -17,4 +17,6 @@ interface ActionRepository {
 
     suspend fun getPaidUpInTime(date: Date): Flow<Double>
 
+    suspend fun getSavedMoneyInTime(date: Date): Flow<Double>
+
 }

@@ -29,4 +29,7 @@ interface ActionDao {
     @Query("SELECT sum(amount) FROM actions_table where date >= :date AND category != :category ")
     fun getPaidUpInTime(date: Date, category: Category = Category.INCOME): Flow<Double>
 
+    @Query("SELECT sum(amount) - (SELECT sum(amount) FROM actions_table where date >= :date AND category != :category) FROM actions_table where date >= :date AND category = :category ")
+    fun getSavedMoneyInTime(date: Date, category: Category = Category.INCOME): Flow<Double>
+
 }
