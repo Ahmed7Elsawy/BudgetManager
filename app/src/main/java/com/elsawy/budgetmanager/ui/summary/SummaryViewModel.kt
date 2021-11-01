@@ -54,5 +54,10 @@ class SummaryViewModel @Inject constructor(
         }
     }
 
+    fun getPaidActionsInTime(date: Date) = liveData {
+        repository.getPaidActionsInTime(date).collect {
+            emit(it)
+        }
+    }
 
 }

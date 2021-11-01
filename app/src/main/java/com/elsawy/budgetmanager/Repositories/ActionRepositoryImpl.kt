@@ -26,5 +26,6 @@ class ActionRepositoryImpl @Inject constructor(
 
     override suspend fun getSavedMoneyInTime(date: Date): Flow<Double> = actionDao.getSavedMoneyInTime(date)
 
+    override suspend fun getPaidActionsInTime(date: Date): Flow<List<Action>> = actionDao.getPaidActionsInTime(date)
 
 }
