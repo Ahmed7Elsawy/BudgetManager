@@ -6,7 +6,42 @@
     android:orientation="vertical"
     tools:context=".ui.summary.SummaryFragment"
     android:layout_marginBottom="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        app:selectionRequired="true"
+        app:singleSelection="true"
+        app:checkedButton="@id/last_weak"
+        >
+
+        <Button
+            android:id="@+id/last_weak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Weak"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+        <Button
+            android:id="@+id/last_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Month"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+        <Button
+            android:id="@+id/last_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Year"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <ScrollView
         android:layout_width="match_parent"

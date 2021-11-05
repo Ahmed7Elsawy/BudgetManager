@@ -13,6 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import com.elsawy.budgetmanager.R
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
+import com.elsawy.budgetmanager.utils.getLastMonthDate
+import com.elsawy.budgetmanager.utils.getLastWeekDate
+import com.elsawy.budgetmanager.utils.getLastYearDate
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
@@ -22,6 +25,7 @@ import java.util.*
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.button.MaterialButtonToggleGroup
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -35,6 +39,9 @@ class SummaryFragment : Fragment() {
    private lateinit var savedMoneyTextView: TextView
    private lateinit var paidPieChart: PieChart
    private lateinit var incomeBarChart: BarChart
+   private lateinit var materialButtonToggleGroup: MaterialButtonToggleGroup
+
+   private lateinit var date: Date
 
    override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
@@ -45,13 +52,34 @@ class SummaryFragment : Fragment() {
       incomeTextView = view.findViewById(R.id.income_textview)
       paidUpTextView = view.findViewById(R.id.paid_up_textview)
       savedMoneyTextView = view.findViewById(R.id.saved_textview)
-
       paidPieChart = view.findViewById(R.id.paid_pie_chart)
       incomeBarChart = view.findViewById(R.id.income_bar_chart)
+      materialButtonToggleGroup = view.findViewById(R.id.toggleButton)
 
       initPieChart()
       setDataToPieChart(emptyList())
       setIncomeToBarChart(emptyList())
+
+      date = Date()
+      materialButtonToggleGroup.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
+         if (isChecked) {
+            when (checkedId) {
+               R.id.last_weak -> {
+                  updateDate(::getLastWeekDate)
+                  Log.d("Summary group", "last weak")
+               }
+               R.id.last_month -> {
+                  updateDate(::getLastMonthDate)
+                  Log.d("Summary group", "last month")
+               }
+               R.id.last_year -> {
+                  updateDate(::getLastYearDate)
+                  Log.d("Summary group", "last year")
+               }
+            }
+
+         }
+      }
 
       return view
    }
@@ -59,9 +87,7 @@ class SummaryFragment : Fragment() {
    override fun onActivityCreated(savedInstanceState: Bundle?) {
       super.onActivityCreated(savedInstanceState)
 
-      val date = Date(1630717008000)
-
-      summaryViewModel.getAllActionsInTime(date)
+      updateDate(::getLastWeekDate)
 
       lifecycleScope.launch {
 
@@ -217,6 +243,11 @@ class SummaryFragment : Fragment() {
       incomeBarChart.animateY(3000)
       //draw chart
       incomeBarChart.invalidate()
+   }
+
+   private fun updateDate(getDate: () -> Date) {
+      date = getDate()
+      summaryViewModel.getAllActionsInTime(date)
    }
 
 }
