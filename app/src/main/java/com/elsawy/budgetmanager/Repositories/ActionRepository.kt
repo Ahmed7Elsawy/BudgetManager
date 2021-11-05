@@ -20,4 +20,6 @@ interface ActionRepository {
     suspend fun getSavedMoneyInTime(date: Date): Flow<Double>
 
     suspend fun getPaidActionsInTime(date: Date): Flow<List<Action>>
+
+    suspend fun getAllActionsInTime(date: Date): Flow<List<Action>>
 }

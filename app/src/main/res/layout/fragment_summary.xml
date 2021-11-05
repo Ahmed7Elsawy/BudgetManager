@@ -50,6 +50,22 @@
                 android:id="@+id/paid_pie_chart"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
+                android:layout_margin="18dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Income Chart"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/income_bar_chart"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_margin="18dp"
                 />
 
         </LinearLayout>

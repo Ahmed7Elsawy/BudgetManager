@@ -8,7 +8,6 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-//@Singleton
 class ActionRepositoryImpl @Inject constructor(
     private val actionDao: ActionDao,
 ) : ActionRepository {
@@ -27,5 +26,7 @@ class ActionRepositoryImpl @Inject constructor(
     override suspend fun getSavedMoneyInTime(date: Date): Flow<Double> = actionDao.getSavedMoneyInTime(date)
 
     override suspend fun getPaidActionsInTime(date: Date): Flow<List<Action>> = actionDao.getPaidActionsInTime(date)
+
+    override suspend fun getAllActionsInTime(date: Date): Flow<List<Action>> = actionDao.getAllActionsInTime(date)
 
 }

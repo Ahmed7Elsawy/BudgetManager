@@ -35,4 +35,7 @@ interface ActionDao {
     @Query("SELECT * FROM actions_table where date >= :date AND category != :category ")
     fun getPaidActionsInTime(date: Date, category: Category = Category.INCOME): Flow<List<Action>>
 
+    @Query("SELECT * FROM actions_table where date >= :date ")
+    fun getAllActionsInTime(date: Date): Flow<List<Action>>
+
 }
