@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.elsawy.budgetmanager.Repositories.ActionRepository
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
+import com.elsawy.budgetmanager.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -44,13 +45,20 @@ class SummaryViewModel @Inject constructor(
       }
    }
 
-   private var _incomeSum = MutableStateFlow<Double>(.0)
+   private val _dateFilterFlow = MutableStateFlow<DateFilter>(WeekFilter())
+   var dateFilterFlow: StateFlow<DateFilter> = _dateFilterFlow
+
+   init {
+      getAllActionsInTime(dateFilterFlow.value.getDate())
+   }
+
+   private var _incomeSum = MutableStateFlow(.0)
    var incomeSum: StateFlow<Double> = _incomeSum
 
-   private var _paidSum = MutableStateFlow<Double>(.0)
+   private var _paidSum = MutableStateFlow(.0)
    var paidSum: StateFlow<Double> = _paidSum
 
-   private var _savedMoney = MutableStateFlow<Double>(.0)
+   private var _savedMoney = MutableStateFlow(.0)
    var savedMoney: StateFlow<Double> = _savedMoney
 
    private var _incomeActions = MutableStateFlow<List<Action>>(emptyList())
@@ -74,5 +82,8 @@ class SummaryViewModel @Inject constructor(
       }
    }
 
+   fun setDateFilter(dateFilter: DateFilter) {
+      _dateFilterFlow.value = dateFilter
+   }
 
 }

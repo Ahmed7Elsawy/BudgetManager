@@ -13,9 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.elsawy.budgetmanager.R
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
-import com.elsawy.budgetmanager.utils.getLastMonthDate
-import com.elsawy.budgetmanager.utils.getLastWeekDate
-import com.elsawy.budgetmanager.utils.getLastYearDate
+import com.elsawy.budgetmanager.utils.*
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
@@ -23,7 +21,9 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.button.MaterialButtonToggleGroup
 import kotlinx.coroutines.flow.collect
@@ -41,8 +41,6 @@ class SummaryFragment : Fragment() {
    private lateinit var incomeBarChart: BarChart
    private lateinit var materialButtonToggleGroup: MaterialButtonToggleGroup
 
-   private lateinit var date: Date
-
    override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?,
@@ -57,23 +55,19 @@ class SummaryFragment : Fragment() {
       materialButtonToggleGroup = view.findViewById(R.id.toggleButton)
 
       initPieChart()
-      setDataToPieChart(emptyList())
-      setIncomeToBarChart(emptyList())
-
-      date = Date()
-      materialButtonToggleGroup.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
+      materialButtonToggleGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
          if (isChecked) {
             when (checkedId) {
                R.id.last_weak -> {
-                  updateDate(::getLastWeekDate)
+                  summaryViewModel.setDateFilter(WeekFilter())
                   Log.d("Summary group", "last weak")
                }
                R.id.last_month -> {
-                  updateDate(::getLastMonthDate)
+                  summaryViewModel.setDateFilter(MonthFilter())
                   Log.d("Summary group", "last month")
                }
                R.id.last_year -> {
-                  updateDate(::getLastYearDate)
+                  summaryViewModel.setDateFilter(YearFilter())
                   Log.d("Summary group", "last year")
                }
             }
@@ -86,8 +80,6 @@ class SummaryFragment : Fragment() {
 
    override fun onActivityCreated(savedInstanceState: Bundle?) {
       super.onActivityCreated(savedInstanceState)
-
-      updateDate(::getLastWeekDate)
 
       lifecycleScope.launch {
 
@@ -119,28 +111,13 @@ class SummaryFragment : Fragment() {
                setDataToPieChart(actions)
             }
          }
+         launch {
+            summaryViewModel.dateFilterFlow.collect { dateFilter ->
+               summaryViewModel.getAllActionsInTime(dateFilter.getDate())
+            }
+         }
       }
-//      summaryViewModel.getIncome(date).observe(viewLifecycleOwner) { income ->
-//         Log.d("Summary income", income.toString())
-//         incomeTextView.text = "your income in this time is $income."
-//      }
-
-//      summaryViewModel.getPaidUp(date).observe(viewLifecycleOwner) { paid ->
-//         Log.d("Summary paid up", paid.toString())
-//         paidUpTextView.text = "you spent $paid in this time."
-//      }
-
-//         summaryViewModel.getSavedMoney(date).observe(viewLifecycleOwner) { saved ->
-//            Log.d("Summary savedMoney", saved.toString())
-//            savedMoneyTextView.text = "you saved $saved in this time."
-//         }
-
-//         summaryViewModel.getPaidActionsInTime(date).observe(viewLifecycleOwner) { actions ->
-//            setDataToPieChart(actions)
-//         }
-
    }
-
 
    private fun initPieChart() {
       paidPieChart.setUsePercentValues(true)
@@ -160,7 +137,6 @@ class SummaryFragment : Fragment() {
    }
 
    private fun setDataToPieChart(actions: List<Action>) {
-      val totalAmount = actions.map { it.amount }.sum()
       val mortgageAmount =
          actions.filter { it.category == Category.MORTGAGE }.map { it.amount }.sum()
       val groceriesAmount =
@@ -223,6 +199,27 @@ class SummaryFragment : Fragment() {
          labels.add(it.date.toString())
       }
 
+      val xAxisValues = ArrayList<String>()
+      actions.forEach {
+         val dateName = summaryViewModel.dateFilterFlow.value.getDateName(it.date)
+         xAxisValues.add(dateName)
+      }
+
+      val xAxis = incomeBarChart.xAxis
+      xAxis.granularity = 1f
+      xAxis.isGranularityEnabled = true
+      xAxis.setCenterAxisLabels(true)
+      xAxis.setDrawGridLines(false)
+      xAxis.textSize = 10f
+
+      xAxis.position = XAxis.XAxisPosition.BOTTOM
+      xAxis.valueFormatter = IndexAxisValueFormatter(xAxisValues)
+
+      xAxis.labelCount = actions.size
+      xAxis.mAxisMaximum = actions.size.toFloat()
+      xAxis.setCenterAxisLabels(false)
+      xAxis.setAvoidFirstLastClipping(false)
+
       val barDataSet = BarDataSet(entries, "")
       barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
 
@@ -243,11 +240,6 @@ class SummaryFragment : Fragment() {
       incomeBarChart.animateY(3000)
       //draw chart
       incomeBarChart.invalidate()
-   }
-
-   private fun updateDate(getDate: () -> Date) {
-      date = getDate()
-      summaryViewModel.getAllActionsInTime(date)
    }
 
 }
