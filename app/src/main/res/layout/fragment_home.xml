@@ -8,26 +8,21 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include
-        android:id="@+id/table_header"
-        layout="@layout/action_table_header"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_recycler_view"
+    <com.evrencoskun.tableview.TableView
+        android:id="@+id/content_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/table_header"
-        tools:listitem="@layout/action_item" />
+        app:column_header_height="@dimen/default_column_header_height"
+        app:row_header_width="@dimen/default_row_header_width"
+        app:selected_color="@color/replay_orange_500"
+        app:shadow_color="@color/teal_700"
+        app:unselected_color="@color/white"
+        />
 
     <TextView
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/no_data" />
 
 </LinearLayout>
