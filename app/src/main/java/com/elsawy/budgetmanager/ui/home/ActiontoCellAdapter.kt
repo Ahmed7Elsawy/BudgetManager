@@ -4,7 +4,7 @@ import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.utils.convertTimeStampToDate
 
 
-// return index list of actions list
+// return index list of actions list to use it as ID in table
 fun actionsToRowHeaders(actions: List<Action>): List<RowHeader> {
    return actions.mapIndexed { index, _ ->
       RowHeader(index + 1)
