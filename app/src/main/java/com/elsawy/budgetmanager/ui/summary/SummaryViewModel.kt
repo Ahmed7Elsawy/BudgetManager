@@ -45,7 +45,7 @@ class SummaryViewModel @Inject constructor(
       }
    }
 
-   private val _dateFilterFlow = MutableStateFlow<DateFilter>(WeekFilter())
+   private val _dateFilterFlow = MutableStateFlow<DateFilter>(MonthFilter())
    var dateFilterFlow: StateFlow<DateFilter> = _dateFilterFlow
 
    init {

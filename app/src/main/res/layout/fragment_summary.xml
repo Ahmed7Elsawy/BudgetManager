@@ -17,7 +17,7 @@
         android:layout_margin="8dp"
         app:selectionRequired="true"
         app:singleSelection="true"
-        app:checkedButton="@id/last_weak"
+        app:checkedButton="@id/last_month"
         >
 
         <Button
