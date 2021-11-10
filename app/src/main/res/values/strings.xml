@@ -12,6 +12,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="save">save</string>
+    <string name="cancel">cancel</string>
     <string name="income">Income</string>
     <string name="mortgage">Mortgage</string>
     <string name="utilities">Utilities</string>
@@ -19,9 +20,9 @@
     <string name="groceries">Groceries</string>
     <string name="date">Date</string>
     <string name="category">Category</string>
-    <string name="description">Description</string>
-    <string name="amount">Amount</string>
     <string name="balance">Balance</string>
+    <string name="amount">Amount</string>
+    <string name="description">Description</string>
 
 
 </resources>

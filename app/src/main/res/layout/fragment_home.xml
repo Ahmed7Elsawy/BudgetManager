@@ -16,7 +16,7 @@
         app:row_header_width="@dimen/default_row_header_width"
         app:selected_color="@color/replay_orange_500"
         app:shadow_color="@color/teal_700"
-        app:unselected_color="@color/white"
+        app:unselected_color="@color/off_white"
         />
 
     <TextView

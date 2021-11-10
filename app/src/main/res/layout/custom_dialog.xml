@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:padding="18dp">
 
     <ImageView
         android:id="@+id/date_image"
@@ -11,108 +12,80 @@
         android:layout_height="30dp"
         android:src="@drawable/ic_calendar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="8dp"
-        />
-
-    <TextView
-        android:id="@+id/select_date_textview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Date:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/date_image"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_weight="1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/date_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginEnd="8dp"
-        android:text=""
+        android:text="29/10/2021"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_weight="2"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Category:"
-        android:textSize="20sp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/select_date_textview" />
+        app:layout_constraintStart_toEndOf="@+id/date_image"
+        app:layout_constraintBottom_toBottomOf="@+id/date_image"
+        app:layout_constraintTop_toTopOf="@+id/date_image" />
 
     <TextView
         android:id="@+id/category_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="select one"
+        android:text="@string/category"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/date_textview" />
+        app:layout_constraintEnd_toStartOf="@id/category_image"
+        app:layout_constraintBottom_toBottomOf="@+id/date_image"
+        app:layout_constraintTop_toTopOf="@+id/date_image"
+        />
 
-    <TextView
-        android:id="@+id/description_textview"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/category_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_arrow_drop_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/date_image"
+        app:layout_constraintTop_toTopOf="@id/date_image"
+        />
+
+    <EditText
+        android:id="@+id/amount_edittext"
+        style="@style/custom_dialog_edittext"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
-        android:text="Description:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="@string/amount"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/date_image"
         app:layout_constraintTop_toBottomOf="@id/category_textview" />
 
     <EditText
         android:id="@+id/description_edittext"
-        android:layout_width="0dp"
+        style="@style/custom_dialog_edittext"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:padding="8dp"
-        android:layout_marginStart="50dp"
-        android:textSize="20sp"
-        android:maxLines="2"
-        android:hint="Description"
+        android:hint="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/description_textview"
-        app:layout_constraintTop_toBottomOf="@id/category_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/amount_edittext" />
 
-
-    <TextView
-        android:id="@+id/amount_textview"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save_dialog_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
-        android:text="Amount:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/description_textview" />
-
-    <EditText
-        android:id="@+id/amount_edittext"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:padding="8dp"
-        android:layout_marginStart="50dp"
-        android:textSize="20sp"
-        android:maxLines="1"
-        android:hint="Amount"
+        android:text="@string/save"
+        app:cornerRadius="10dp"
+        style="@style/custom_dialog_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/description_textview"
-        app:layout_constraintTop_toBottomOf="@id/description_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/description_edittext" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancel_dialog_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/cancel"
+        app:cornerRadius="10dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        style="@style/custom_dialog_button"
+        app:layout_constraintEnd_toStartOf="@+id/save_dialog_btn"
+        app:layout_constraintTop_toBottomOf="@+id/description_edittext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,8 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#EFF3F4</color>
+    <color name="off_white">#EFF3F4</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="replay_blue_700">#344955</color>
     <color name="replay_blue_800">#232F34</color>
