@@ -7,15 +7,11 @@ import com.elsawy.budgetmanager.Repositories.ActionRepository
 import com.elsawy.budgetmanager.Repositories.ActionRepositoryImpl
 import com.elsawy.budgetmanager.data.local.ActionDao
 import com.elsawy.budgetmanager.data.local.ActionDatabase
-import com.elsawy.budgetmanager.ui.Main.MainActivityViewModel
-import com.elsawy.budgetmanager.ui.home.HomeViewModel
-import com.elsawy.budgetmanager.ui.summary.SummaryViewModel
 import com.elsawy.budgetmanager.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 

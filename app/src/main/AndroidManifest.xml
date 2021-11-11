@@ -12,7 +12,7 @@
         android:theme="@style/Theme.BudgetManager">
 
         <activity
-            android:name=".ui.Main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

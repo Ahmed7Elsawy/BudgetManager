@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun convertTimeStampToDate(time: Long): String {
-   val sdf = SimpleDateFormat("dd/MM/yyyy")
+   val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.US)
    val netDate = Date(time)
    return sdf.format(netDate)
 }

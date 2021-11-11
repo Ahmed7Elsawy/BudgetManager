@@ -21,14 +21,14 @@ class DateTest {
 
    @Test
    fun `convertTimeStampToDate() in the past`() {
-      val expected = "23/10/2021"
+      val expected = "23.10.2021"
       val result = convertTimeStampToDate(1635021233000)
       assertThat(result).isEqualTo(expected)
    }
 
    @Test
    fun `convertTimeStampToDate() in the future`() {
-      val expected = "29/07/2023"
+      val expected = "29.07.2023"
       val result = convertTimeStampToDate(1690594033000)
       assertThat(result).isEqualTo(expected)
    }
