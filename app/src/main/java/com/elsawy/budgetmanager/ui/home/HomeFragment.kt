@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.elsawy.budgetmanager.R
-import com.evrencoskun.tableview.TableView
+import com.elsawy.budgetmanager.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,16 +14,17 @@ class HomeFragment : Fragment() {
 
    private val homeViewModel: HomeViewModel by viewModels()
 
+   private var _binding: FragmentHomeBinding? = null
+   private val binding get() = _binding!!
+
    override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?,
-   ): View? {
-      val view = inflater.inflate(R.layout.fragment_home, container, false)
+   ): View {
+      _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-      val tableView =
-         view.findViewById<TableView>(R.id.content_container)
       val adapter = MyTableViewAdapter()
-      tableView.setAdapter(adapter)
+      binding.tableView.setAdapter(adapter)
 
       homeViewModel.allActions.observe(viewLifecycleOwner) { actions ->
          adapter.setAllItems(
@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
             actionsToCells(actions))
       }
 
-      return view
+      return binding.root
    }
 
 }
