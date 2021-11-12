@@ -27,7 +27,7 @@
             android:id="@+id/date_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{dialogViewModel.convertTimeStampToDate(mainViewModel.date)}"
+            android:text="@{dialogViewModel.convertTimeStampToDate(dialogViewModel.date)}"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/date_image"
             app:layout_constraintStart_toEndOf="@+id/date_image"
