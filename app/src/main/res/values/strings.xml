@@ -24,5 +24,11 @@
     <string name="amount">Amount</string>
     <string name="description">Description</string>
 
+    <string name="generic_income">your income in this time is %s.</string>
+    <string name="generic_paid">you spent %s in this time.</string>
+    <string name="generic_saved">you saved %s in this time.</string>
+    <string name="paid_chart">Paid Chart</string>
+    <string name="income_chart">Income Chart</string>
+
 
 </resources>

@@ -18,33 +18,6 @@ class SummaryViewModel @Inject constructor(
    private val repository: ActionRepository,
 ) : ViewModel() {
 
-   fun getIncome(date: Date) = liveData {
-      val data = repository.getIncomeInTime(date)
-      data.collect {
-         emit(it)
-      }
-   }
-
-   fun getPaidUp(date: Date) = liveData {
-      val data = repository.getPaidUpInTime(date)
-      data.collect {
-         emit(it)
-      }
-   }
-
-   fun getSavedMoney(date: Date) = liveData {
-      val data = repository.getSavedMoneyInTime(date)
-      data.collect {
-         emit(it)
-      }
-   }
-
-   fun getPaidActionsInTime(date: Date) = liveData {
-      repository.getPaidActionsInTime(date).collect {
-         emit(it)
-      }
-   }
-
    private val _dateFilterFlow = MutableStateFlow<DateFilter>(MonthFilter())
    var dateFilterFlow: StateFlow<DateFilter> = _dateFilterFlow
 
@@ -67,7 +40,7 @@ class SummaryViewModel @Inject constructor(
    private var _paidActions = MutableStateFlow<List<Action>>(emptyList())
    var paidActions: StateFlow<List<Action>> = _paidActions
 
-   fun getAllActionsInTime(date: Date) {
+   private fun getAllActionsInTime(date: Date) {
 
       viewModelScope.launch {
          repository.getAllActionsInTime(date)
@@ -82,8 +55,18 @@ class SummaryViewModel @Inject constructor(
       }
    }
 
-   fun setDateFilter(dateFilter: DateFilter) {
-      _dateFilterFlow.value = dateFilter
+//   fun setDateFilter(dateFilter: DateFilter) {
+//      _dateFilterFlow.value = dateFilter
+//   }
+
+   fun setDateFilter(dateFilter: Int) {
+      when (dateFilter) {
+         1 -> _dateFilterFlow.value = WeekFilter()
+         2 -> _dateFilterFlow.value = MonthFilter()
+         3 -> _dateFilterFlow.value = YearFilter()
+      }
+      getAllActionsInTime(dateFilterFlow.value.getDate())
    }
+
 
 }

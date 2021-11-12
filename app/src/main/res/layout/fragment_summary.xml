@@ -1,112 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.summary.SummaryFragment"
-    android:layout_marginBottom="20dp"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="8dp"
-        app:selectionRequired="true"
-        app:singleSelection="true"
-        app:checkedButton="@id/last_month"
-        >
+    <data>
 
-        <Button
-            android:id="@+id/last_weak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Weak"
-            style="?attr/materialButtonOutlinedStyle"
-            />
-        <Button
-            android:id="@+id/last_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Month"
-            style="?attr/materialButtonOutlinedStyle"
-            />
-        <Button
-            android:id="@+id/last_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Year"
-            style="?attr/materialButtonOutlinedStyle"
-            />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+        <variable
+            name="dateFilters"
+            type="java.util.List&lt;com.elsawy.budgetmanager.utils.DateFilter&gt;" />
 
-    <ScrollView
+        <variable
+            name="summaryVM"
+            type="com.elsawy.budgetmanager.ui.summary.SummaryViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        tools:context=".ui.summary.SummaryFragment">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            app:checkedButton="@id/last_month"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-            <TextView
-                android:id="@+id/income_textview"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/last_weak"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClickListener="@{()-> summaryVM.setDateFilter(1)}"
+                android:text="Last Weak" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/last_month"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClickListener="@{()-> summaryVM.setDateFilter(2)}"
+                android:text="Last Month" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/last_year"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClickListener="@{()-> summaryVM.setDateFilter(3)}"
+                android:text="Last Year" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="20sp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/paid_up_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/income_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    android:text="@{@string/generic_income(summaryVM.incomeSum)}"
+                    />
 
-            <TextView
-                android:id="@+id/saved_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/paid_up_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    android:text="@{@string/generic_paid(summaryVM.paidSum)}"
+                    />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Paid Chart"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/saved_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"
+                    android:text="@{@string/generic_saved(summaryVM.savedMoney)}"
+                    />
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/paid_pie_chart"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_margin="18dp"
-                />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/paid_chart"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Income Chart"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/paid_pie_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_margin="18dp" />
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/income_bar_chart"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginBottom="30dp"
-                />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/income_chart"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
-    </ScrollView>
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/income_bar_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="30dp" />
 
-</LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

@@ -21,7 +21,7 @@
         <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_action.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_summary.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/fragment_summary.xml" value="0.1" />
         <entry key="app/src/main/res/layout/summary_fragment.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/table_view_cell_layout.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/table_view_column_header_layout.xml" value="0.25" />
