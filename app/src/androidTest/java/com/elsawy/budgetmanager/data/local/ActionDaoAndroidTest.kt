@@ -7,15 +7,12 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.*
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestWatcher
-import org.junit.runner.Description
 import org.junit.runner.RunWith
 import java.io.IOException
 
@@ -79,22 +76,5 @@ class ActionDaoAndroidTest {
       }
    }
 
-}
-
-@ExperimentalCoroutinesApi
-class TestCoroutineRule(
-   private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
-) : TestWatcher() {
-
-   override fun starting(description: Description?) {
-      super.starting(description)
-      Dispatchers.setMain(testDispatcher)
-   }
-
-   override fun finished(description: Description?) {
-      super.finished(description)
-      Dispatchers.resetMain()
-      testDispatcher.cleanupTestCoroutines()
-   }
 }
 
