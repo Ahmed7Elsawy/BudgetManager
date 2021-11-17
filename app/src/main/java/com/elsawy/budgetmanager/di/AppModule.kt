@@ -2,7 +2,6 @@ package com.elsawy.budgetmanager.di
 
 import android.content.Context
 import androidx.room.Room
-import com.elsawy.ahmed.news.data.provider.PreferencesHelper
 import com.elsawy.budgetmanager.Repositories.ActionRepository
 import com.elsawy.budgetmanager.Repositories.ActionRepositoryImpl
 import com.elsawy.budgetmanager.data.local.ActionDao
@@ -24,15 +23,6 @@ object AppModule {
     fun provideActionDatabase(
         @ApplicationContext context: Context
     ) = Room.databaseBuilder(context, ActionDatabase::class.java, DATABASE_NAME).build()
-
-    @Provides
-    @Singleton
-    fun provideSharedPreferences(
-        @ApplicationContext context: Context
-    ): PreferencesHelper {
-        PreferencesHelper.init(context)
-        return PreferencesHelper
-    }
 
     @Provides
     @Singleton

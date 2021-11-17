@@ -1,16 +1,18 @@
 package com.elsawy.budgetmanager.ui.main
 
 import android.text.Editable
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elsawy.ahmed.news.data.provider.PreferencesHelper
 import com.elsawy.budgetmanager.Repositories.ActionRepository
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -19,7 +21,6 @@ import javax.inject.Inject
 @HiltViewModel
 class DialogViewModel @Inject constructor(
    private val repository: ActionRepository,
-   private val sharedPreferences: PreferencesHelper,
 ) : ViewModel() {
 
    private val _date = MutableStateFlow(Date(System.currentTimeMillis()))
@@ -66,7 +67,7 @@ class DialogViewModel @Inject constructor(
       _dialogState.value = DialogState.DISMISS
    }
 
-   fun cancelDialog(){
+   fun cancelDialog() {
       DialogState.CANCEL
    }
 
@@ -86,14 +87,18 @@ class DialogViewModel @Inject constructor(
    }
 
    private fun insertAction(action: Action) {
-      var balance = sharedPreferences.getBalance()
-      if (action.category == Category.INCOME)
-         balance += action.amount
-      else
-         balance -= action.amount
-      action.balance = balance
-      sharedPreferences.setBalance(balance)
+
       viewModelScope.launch(Dispatchers.IO) {
+         var balance = 0.0
+         repository.getBalance().take(1).collect {
+            balance = it
+         }
+
+         if (action.category == Category.INCOME)
+            balance += action.amount
+         else
+            balance -= action.amount
+         action.balance = balance
          repository.insertActionItem(action)
       }
    }
@@ -109,7 +114,7 @@ class DialogViewModel @Inject constructor(
 
 }
 
-enum class DialogState{
+enum class DialogState {
    DISMISS,
    CANCEL
 }

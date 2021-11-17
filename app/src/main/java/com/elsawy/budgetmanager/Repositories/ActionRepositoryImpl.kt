@@ -29,4 +29,6 @@ class ActionRepositoryImpl @Inject constructor(
 
     override suspend fun getAllActionsInTime(date: Date): Flow<List<Action>> = actionDao.getAllActionsInTime(date)
 
+    override suspend fun getBalance(): Flow<Double> = actionDao.getBalance()
+
 }
