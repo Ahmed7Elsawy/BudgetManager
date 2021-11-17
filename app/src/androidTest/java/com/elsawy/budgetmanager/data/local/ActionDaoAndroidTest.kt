@@ -25,7 +25,7 @@ class ActionDaoAndroidTest {
 
    @ExperimentalCoroutinesApi
    @get:Rule
-   val testCoroutineRule = TestCoroutineRule()
+   val testCoroutineRule = AndroidTestCoroutineRule()
 
    private lateinit var actionDao: ActionDao
    private lateinit var database: ActionDatabase

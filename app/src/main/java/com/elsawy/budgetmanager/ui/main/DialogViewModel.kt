@@ -35,10 +35,10 @@ class DialogViewModel @Inject constructor(
    private val _category = MutableStateFlow<Category?>(null)
    var category = _category
 
-   private val _categoryState = MutableLiveData<Boolean>()
+   private val _categoryState = MutableLiveData<Boolean>(false)
    val categoryState = _categoryState
 
-   private val _amountState = MutableLiveData<Boolean>()
+   private val _amountState = MutableLiveData<Boolean>(false)
    val amountState = _amountState
 
    private val _dialogState = MutableLiveData<DialogState>()

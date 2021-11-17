@@ -1,4 +1,4 @@
-package com.elsawy.budgetmanager.data.local
+package com.elsawy.budgetmanager
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
