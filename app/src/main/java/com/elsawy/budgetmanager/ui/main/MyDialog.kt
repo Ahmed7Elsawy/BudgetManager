@@ -19,7 +19,12 @@ import com.elsawy.budgetmanager.R
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.elsawy.budgetmanager.databinding.CustomDialogBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -50,29 +55,36 @@ class MyDialog : DialogFragment() {
          showMenu(v, R.menu.category_menu, binding.categoryTextview)
       }
 
-      dialogViewModel.dialogState.observe(requireActivity()){
-         it?.let {
-            if (it== DialogState.DISMISS){
-               customDialog.dismiss()
-            }else {
-               customDialog.cancel()
+      lifecycleScope.launch {
+         repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            launch {
+               dialogViewModel.categoryState.collect {
+                  if (it)
+                     Toast.makeText(requireContext(), "Select Category", Toast.LENGTH_SHORT).show()
+               }
             }
+
+            launch {
+               dialogViewModel.amountState.collect {
+                  if (it)
+                     Toast.makeText(requireContext(), "put the Amount", Toast.LENGTH_SHORT).show()
+               }
+            }
+
+            launch {
+               dialogViewModel.dialogState.collect {
+                  it?.let {
+                     if (it == DialogState.DISMISS) {
+                        customDialog.dismiss()
+                     } else if (it == DialogState.CANCEL) {
+                        customDialog.cancel()
+                     }
+                  }
+               }
+            }
+
          }
-      }
-
-      dialogViewModel.categoryState.observe(requireActivity()) {
-         if (it != null && it)
-            Toast.makeText(requireContext(), "Select Category", Toast.LENGTH_SHORT).show()
-      }
-
-      dialogViewModel.categoryState.observe(requireActivity()) {
-         if (it != null && it)
-            Toast.makeText(requireContext(), "Select Category", Toast.LENGTH_SHORT).show()
-      }
-
-      dialogViewModel.amountState.observe(requireActivity()) {
-         if (it != null && it)
-            Toast.makeText(requireContext(), "put the Amount", Toast.LENGTH_SHORT).show()
       }
 
       return customDialog

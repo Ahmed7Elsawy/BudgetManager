@@ -35,13 +35,13 @@ class DialogViewModel @Inject constructor(
    private val _category = MutableStateFlow<Category?>(null)
    var category = _category
 
-   private val _categoryState = MutableLiveData<Boolean>(false)
+   private val _categoryState = MutableStateFlow<Boolean>(false)
    val categoryState = _categoryState
 
-   private val _amountState = MutableLiveData<Boolean>(false)
+   private val _amountState = MutableStateFlow<Boolean>(false)
    val amountState = _amountState
 
-   private val _dialogState = MutableLiveData<DialogState>()
+   private val _dialogState = MutableStateFlow<DialogState?>(null)
    val dialogState = _dialogState
 
    fun updateDate(date: Date) {
@@ -68,7 +68,7 @@ class DialogViewModel @Inject constructor(
    }
 
    fun cancelDialog() {
-      DialogState.CANCEL
+      _dialogState.value = DialogState.CANCEL
    }
 
    fun onSaveClicked() {
