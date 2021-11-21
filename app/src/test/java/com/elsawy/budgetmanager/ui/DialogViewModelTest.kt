@@ -1,4 +1,4 @@
-package com.elsawy.budgetmanager.ui.main
+package com.elsawy.budgetmanager.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
@@ -6,6 +6,8 @@ import com.elsawy.budgetmanager.TestCoroutineRule
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
 import com.elsawy.budgetmanager.repository.FakeActionRepositoryTest
+import com.elsawy.budgetmanager.ui.main.DialogState
+import com.elsawy.budgetmanager.ui.main.DialogViewModel
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

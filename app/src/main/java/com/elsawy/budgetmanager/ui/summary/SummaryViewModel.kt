@@ -4,11 +4,11 @@ import androidx.lifecycle.*
 import com.elsawy.budgetmanager.Repositories.ActionRepository
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
+import com.elsawy.budgetmanager.di.IoDispatcher
 import com.elsawy.budgetmanager.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -16,6 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SummaryViewModel @Inject constructor(
    private val repository: ActionRepository,
+   @IoDispatcher private val dispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
    private val _dateFilterFlow = MutableStateFlow<DateFilter>(MonthFilter())
@@ -41,13 +42,11 @@ class SummaryViewModel @Inject constructor(
    var paidActions: StateFlow<List<Action>> = _paidActions
 
    private fun getAllActionsInTime(date: Date) {
-
-      viewModelScope.launch {
-         repository.getAllActionsInTime(date)
+      viewModelScope.launch(dispatcher) {
+         repository.getAllActionsInTime(date).take(1)
             .collect { actions ->
                _incomeActions.value = actions.filter { it.category == Category.INCOME }
                _incomeSum.value = _incomeActions.value.map { it.amount }.sum()
-//                  actions.filter { it.category == Category.INCOME }.map { it.amount }.sum()
                _paidActions.value = actions.filter { it.category != Category.INCOME }
                _paidSum.value = _paidActions.value.map { it.amount }.sum()
                _savedMoney.value = _incomeSum.value - _paidSum.value

@@ -9,7 +9,7 @@ fun convertTimeStampToDate(time: Long): String {
    return sdf.format(netDate)
 }
 
-private fun getCalculatedDate(days: Int): Date {
+fun getCalculatedDate(days: Int): Date {
    val cal = Calendar.getInstance()
    cal.add(Calendar.DAY_OF_YEAR, days)
    return Date(cal.timeInMillis)
