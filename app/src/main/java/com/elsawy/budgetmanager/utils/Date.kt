@@ -1,5 +1,6 @@
 package com.elsawy.budgetmanager.utils
 
+import com.elsawy.budgetmanager.utils.Constants.Months
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -45,8 +46,7 @@ class YearFilter : DateFilter() {
       val cal = Calendar.getInstance()
       cal.time = Date(date)
       val year = cal[Calendar.YEAR]
-      val month = cal[Calendar.MONTH] + 1
-
-      return "$month-$year"
+      val month = cal[Calendar.MONTH]
+      return Months[month]
    }
 }

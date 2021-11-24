@@ -66,9 +66,9 @@ class DateTest {
    }
 
    @Test
-   fun `getDateName() in year return month-year `() {
-      val expected = "7-2023"
-      val result = yearFilter.getDateName(1690594033000)
+   fun `getDateName() in year return month Abbreviation `() {
+      val expected = "May"
+      val result = yearFilter.getDateName(1620594033000)
 
       assertThat(result).isEqualTo(expected)
    }

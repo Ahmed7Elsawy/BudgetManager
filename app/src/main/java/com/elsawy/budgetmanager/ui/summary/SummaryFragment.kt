@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.elsawy.budgetmanager.R
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
 import com.elsawy.budgetmanager.databinding.FragmentSummaryBinding
@@ -124,20 +123,17 @@ class SummaryFragment : Fragment() {
 
    private fun setIncomeToBarChart(actions: List<Action>) {
       val entries: ArrayList<BarEntry> = ArrayList()
-      for ((index, action) in actions.withIndex()) {
-         entries.add(BarEntry(index.toFloat(), action.amount.toFloat()))
-      }
-
-      val labels = ArrayList<String>()
-      actions.forEach {
-         labels.add(it.date.toString())
-      }
-
       val xAxisValues = ArrayList<String>()
-      actions.forEach {
-         val dateName = summaryViewModel.dateFilterFlow.value.getDateName(it.date)
-         xAxisValues.add(dateName)
-      }
+
+         val map = actions.groupBy { summaryViewModel.dateFilterFlow.value.getDateName(it.date) }
+            .map { it.key to it.value.sumOf { action -> action.amount } }
+
+         for ((index, pair) in map.withIndex()) {
+            entries.add(BarEntry(index.toFloat(), pair.second.toFloat()))
+         }
+         map.forEach {
+            xAxisValues.add(it.first)
+         }
 
       val xAxis = binding.incomeBarChart.xAxis
       xAxis.granularity = 1f
