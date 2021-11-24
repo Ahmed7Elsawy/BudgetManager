@@ -29,7 +29,8 @@
             android:layout_margin="8dp"
             app:checkedButton="@id/last_month"
             app:selectionRequired="true"
-            app:singleSelection="true">
+            app:singleSelection="true"
+            >
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/last_weak"
@@ -37,7 +38,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClickListener="@{()-> summaryVM.setDateFilter(1)}"
-                android:text="Last Weak" />
+                android:text="@string/last_weak"
+                android:textAllCaps="false"
+                android:textAppearance="@style/CustomFont"
+                />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/last_month"
@@ -45,7 +49,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClickListener="@{()-> summaryVM.setDateFilter(2)}"
-                android:text="Last Month" />
+                android:text="@string/last_month"
+                android:textAllCaps="false"
+                android:textAppearance="@style/CustomFont"
+                />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/last_year"
@@ -53,7 +60,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClickListener="@{()-> summaryVM.setDateFilter(3)}"
-                android:text="Last Year" />
+                android:text="@string/last_year"
+                android:textAllCaps="false"
+                android:textAppearance="@style/CustomFont"
+                />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <ScrollView
@@ -65,61 +75,168 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/income_textview"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        style="@style/card_background_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="@string/income"
+                            android:textSize="18sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/replay_blue_200" />
+
+                        <TextView
+                            android:id="@+id/income_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:fontFamily="@font/libre_baskerville"
+                            android:gravity="center"
+                            android:text="@{summaryVM.incomeSum.toString()}"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        style="@style/card_background_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="@string/paid"
+                            android:textSize="18sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/replay_blue_200" />
+
+                        <TextView
+                            android:id="@+id/paid_up_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:fontFamily="@font/libre_baskerville"
+                            android:gravity="center"
+                            android:text="@{summaryVM.paidSum.toString()}"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/card_background_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="@string/saved"
+                            android:textSize="18sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/replay_blue_200" />
+
+                        <TextView
+                            android:id="@+id/saved_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:fontFamily="@font/libre_baskerville"
+                            android:gravity="center"
+                            android:text="@{summaryVM.savedMoney.toString()}"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:textSize="20sp"
-                    android:text="@{@string/generic_income(summaryVM.incomeSum)}"
-                    />
+                    android:background="@drawable/chart_background"
+                    android:elevation="4dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/paid_up_textview"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/paid_chart"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/paid_pie_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="18dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:textSize="20sp"
-                    android:text="@{@string/generic_paid(summaryVM.paidSum)}"
-                    />
+                    android:background="@drawable/chart_background"
+                    android:elevation="4dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/saved_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="20sp"
-                    android:text="@{@string/generic_saved(summaryVM.savedMoney)}"
-                    />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/income_chart"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/paid_chart"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/paid_pie_chart"
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:layout_margin="18dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/income_chart"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/income_bar_chart"
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="30dp" />
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/income_bar_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="30dp"
+                        />
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>

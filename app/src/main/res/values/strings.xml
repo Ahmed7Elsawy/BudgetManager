@@ -29,6 +29,11 @@
     <string name="generic_saved">you saved %s in this time.</string>
     <string name="paid_chart">Paid Chart</string>
     <string name="income_chart">Income Chart</string>
+    <string name="last_weak">Last Weak</string>
+    <string name="last_month">Last Month</string>
+    <string name="last_year">Last Year</string>
+    <string name="saved">Saved</string>
+    <string name="paid">Paid</string>
 
 
 </resources>

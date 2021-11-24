@@ -4,29 +4,38 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.190625" />
+        <entry key="app/src/main/res/drawable/bottom_nav_color.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/card_background.xml" value="0.12685185185185185" />
+        <entry key="app/src/main/res/drawable/chart_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/dialog_background.xml" value="0.18871794871794872" />
         <entry key="app/src/main/res/drawable/dialog_edittext_background.xml" value="0.18871794871794872" />
         <entry key="app/src/main/res/drawable/ic_arrow_drop_down.xml" value="0.18871794871794872" />
         <entry key="app/src/main/res/drawable/ic_home_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/navigation_color.xml" value="0.12685185185185185" />
         <entry key="app/src/main/res/drawable/outline_calendar_today_24.xml" value="0.15092592592592594" />
         <entry key="app/src/main/res/font-v26/font.xml" value="0.15092592592592594" />
+        <entry key="app/src/main/res/font-v26/number_font.xml" value="0.1574074074074074" />
+        <entry key="app/src/main/res/font/.xml" value="0.1046875" />
         <entry key="app/src/main/res/font/font.xml" value="0.15092592592592594" />
         <entry key="app/src/main/res/font/lato_font.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/font/libre_baskerville.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/font/number.xml" value="0.1574074074074074" />
+        <entry key="app/src/main/res/font/number_font.xml" value="0.1574074074074074" />
         <entry key="app/src/main/res/layout/action_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/action_table_header.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/activity_add_action.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/add_action_dialog.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/custom_background.xml" value="0.17552083333333332" />
-        <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_add_action.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_summary.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_summary.xml" value="0.25" />
         <entry key="app/src/main/res/layout/summary_fragment.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/table_view_cell_layout.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/table_view_column_header_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/table_view_corner_layout.xml" value="0.17552083333333332" />
-        <entry key="app/src/main/res/layout/table_view_row_header_layout.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/table_view_row_header_layout.xml" value="0.33" />
         <entry key="app/src/main/res/menu/action_menu.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/menu/categories_menu.xml" value="0.17552083333333332" />

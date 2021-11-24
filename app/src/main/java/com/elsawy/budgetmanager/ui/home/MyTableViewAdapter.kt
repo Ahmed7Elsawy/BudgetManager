@@ -1,5 +1,6 @@
 package com.elsawy.budgetmanager.ui.home
 
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,9 @@ class MyTableViewAdapter : AbstractTableAdapter<ColumnHeader?, RowHeader?, Cell?
 
       // Get the holder to update cell item text
       val viewHolder = holder as MyCellViewHolder
+      if (columnPosition == 4)
+         viewHolder.cell_textview.gravity = Gravity.CENTER_VERTICAL
+
       viewHolder.cell_textview.text = cell.data.toString()
 
       // If your TableView should have auto resize for cells & columns.

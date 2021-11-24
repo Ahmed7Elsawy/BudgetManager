@@ -75,30 +75,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/amount_edittext" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/save_dialog_btn"
-            style="@style/custom_dialog_button"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{()-> dialogViewModel.onSaveClicked()}"
-            android:text="@string/save"
-            app:cornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_edittext" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/description_edittext">
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancel_dialog_btn"
             style="@style/custom_dialog_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginEnd="10dp"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             android:text="@string/cancel"
             app:cornerRadius="10dp"
-            android:onClick="@{()-> dialogViewModel.cancelDialog()}"
-            app:layout_constraintEnd_toStartOf="@+id/save_dialog_btn"
-            app:layout_constraintTop_toBottomOf="@+id/description_edittext" />
+            android:onClick="@{()-> dialogViewModel.cancelDialog()}" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_dialog_btn"
+                style="@style/custom_dialog_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="@{()-> dialogViewModel.onSaveClicked()}"
+                android:text="@string/save"
+                app:cornerRadius="10dp"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

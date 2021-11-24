@@ -1,5 +1,6 @@
 package com.elsawy.budgetmanager.ui.summary
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.elsawy.budgetmanager.Repositories.ActionRepository
 import com.elsawy.budgetmanager.data.local.Action
@@ -43,7 +44,7 @@ class SummaryViewModel @Inject constructor(
 
    private fun getAllActionsInTime(date: Date) {
       viewModelScope.launch(dispatcher) {
-         repository.getAllActionsInTime(date).take(1)
+         repository.getAllActionsInTime(date)
             .collect { actions ->
                _incomeActions.value = actions.filter { it.category == Category.INCOME }
                _incomeSum.value = _incomeActions.value.map { it.amount }.sum()

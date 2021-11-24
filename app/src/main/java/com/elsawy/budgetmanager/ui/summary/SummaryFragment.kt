@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.elsawy.budgetmanager.R
 import com.elsawy.budgetmanager.data.local.Action
 import com.elsawy.budgetmanager.data.local.Category
 import com.elsawy.budgetmanager.databinding.FragmentSummaryBinding
@@ -94,27 +95,22 @@ class SummaryFragment : Fragment() {
       dataEntries.add(PieEntry(utilitiesAmount.toFloat(), Category.UTILITIES.name))
       dataEntries.add(PieEntry(entertainmentAmount.toFloat(), Category.ENTERTAINMENT.name))
 
-      val colors: ArrayList<Int> = ArrayList()
-      colors.add(Color.parseColor("#4DD0E1"))
-      colors.add(Color.parseColor("#FFF176"))
-      colors.add(Color.parseColor("#FF8A65"))
-      colors.add(Color.parseColor("#FF5722"))
-
       val dataSet = PieDataSet(dataEntries, "")
       val data = PieData(dataSet)
 
       // In Percentage
       data.setValueFormatter(PercentFormatter())
-      dataSet.sliceSpace = 3f
-      dataSet.colors = colors
+      dataSet.sliceSpace = 2f
+      dataSet.setColors(*ColorTemplate.PASTEL_COLORS) //colors = colors
       binding.paidPieChart.data = data
       data.setValueTextSize(15f)
-      binding.paidPieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+      data.setValueTextColor(Color.WHITE)//requireContext().resources.getColor(R.color.white))
+      binding.paidPieChart.setExtraOffsets(20f, 0f, 5f, 5f)
       binding.paidPieChart.animateY(1400, Easing.EaseInOutQuad)
 
       //create hole in center
-      binding.paidPieChart.holeRadius = 58f
-      binding.paidPieChart.transparentCircleRadius = 61f
+      binding.paidPieChart.holeRadius = 60f//58f
+      binding.paidPieChart.transparentCircleRadius = 61f//61f
       binding.paidPieChart.isDrawHoleEnabled = true
       binding.paidPieChart.setHoleColor(Color.WHITE)
 
@@ -159,8 +155,8 @@ class SummaryFragment : Fragment() {
       xAxis.setAvoidFirstLastClipping(false)
 
       val barDataSet = BarDataSet(entries, "")
-      barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-
+      barDataSet.setColors(*ColorTemplate.PASTEL_COLORS)//COLORFUL_COLORS)
+      barDataSet.valueTextSize = 14f
 
       val data = BarData(barDataSet)
       binding.incomeBarChart.data = data
@@ -170,6 +166,7 @@ class SummaryFragment : Fragment() {
       binding.incomeBarChart.xAxis.setDrawAxisLine(false)
       //remove right y-axis
       binding.incomeBarChart.axisRight.isEnabled = false
+      binding.incomeBarChart.axisLeft.isEnabled = false
       //remove legend
       binding.incomeBarChart.legend.isEnabled = false
       //remove description label

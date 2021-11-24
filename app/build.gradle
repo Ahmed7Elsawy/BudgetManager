@@ -104,6 +104,7 @@ dependencies {
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
     // flow test
     androidTestImplementation 'app.cash.turbine:turbine:0.7.0'
+    debugImplementation "androidx.fragment:fragment-testing:1.4.0"
 
 }
 

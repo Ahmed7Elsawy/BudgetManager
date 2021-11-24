@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
+<!--    <color name="purple_200">#FFBB86FC</color>-->
+<!--    <color name="purple_500">#FF6200EE</color>-->
+<!--    <color name="purple_700">#FF3700B3</color>-->
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="off_white">#EFF3F4</color>
     <color name="white">#FFFFFF</color>
 
+    <color name="yellow">#f8961e</color>
+
     <color name="replay_blue_700">#344955</color>
     <color name="replay_blue_800">#232F34</color>
     <color name="replay_blue_600">#4A6572</color>
     <color name="replay_blue_200">#4A6572</color>
     <color name="replay_orange_500">#F9AA33</color>
+    <color name="gray">#EDF0F2</color>
 
-
-    <color name="TextWhite">#ffeeeeee</color>
-    <color name="DeepBlue">#ff06164c</color>
-    <color name="ButtonBlue">#ff505cf3</color>
-    <color name="DarkerButtonBlue">#ff566894</color>
-    <color name="LightRed">#fffc879a</color>
-    <color name="AquaBlue">#ff9aa5c4</color>
+<!--    <color name="TextWhite">#ffeeeeee</color>-->
+<!--    <color name="DeepBlue">#ff06164c</color>-->
+<!--    <color name="ButtonBlue">#ff505cf3</color>-->
+<!--    <color name="DarkerButtonBlue">#ff566894</color>-->
+<!--    <color name="LightRed">#fffc879a</color>-->
+<!--    <color name="AquaBlue">#ff9aa5c4</color>-->
 
 
     <color name="cell_background_color">#ffffff</color>
