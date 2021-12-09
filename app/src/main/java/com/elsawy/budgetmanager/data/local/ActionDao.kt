@@ -39,7 +39,7 @@ interface ActionDao {
     fun getAllActionsInTime(date: Date): Flow<List<Action>>
 
     @Query("SELECT balance FROM actions_table ORDER BY aid DESC limit 1 ")
-    fun getBalance(): Flow<Double>
+    fun getBalance(): Flow<Double?>
 
 
 }

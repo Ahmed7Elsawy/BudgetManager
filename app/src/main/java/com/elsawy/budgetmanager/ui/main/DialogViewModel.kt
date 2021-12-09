@@ -91,7 +91,8 @@ class DialogViewModel @Inject constructor(
       viewModelScope.launch(Dispatchers.IO) {
          var balance = 0.0
          repository.getBalance().take(1).collect {
-            balance = it
+            if (it != null)
+               balance = it
          }
 
          if (action.category == Category.INCOME)
