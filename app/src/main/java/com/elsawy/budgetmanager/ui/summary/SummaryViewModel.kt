@@ -27,14 +27,14 @@ class SummaryViewModel @Inject constructor(
       getAllActionsInTime(dateFilterFlow.value.getDate())
    }
 
-   private var _incomeSum = MutableStateFlow(.0)
-   var incomeSum: StateFlow<Double> = _incomeSum
+   private var _incomeSum = MutableStateFlow(0)
+   var incomeSum: StateFlow<Int> = _incomeSum
 
-   private var _paidSum = MutableStateFlow(.0)
-   var paidSum: StateFlow<Double> = _paidSum
+   private var _paidSum = MutableStateFlow(0)
+   var paidSum: StateFlow<Int> = _paidSum
 
-   private var _savedMoney = MutableStateFlow(.0)
-   var savedMoney: StateFlow<Double> = _savedMoney
+   private var _savedMoney = MutableStateFlow(0)
+   var savedMoney: StateFlow<Int> = _savedMoney
 
    private var _incomeActions = MutableStateFlow<List<Action>>(emptyList())
    var incomeActions: StateFlow<List<Action>> = _incomeActions
@@ -47,17 +47,13 @@ class SummaryViewModel @Inject constructor(
          repository.getAllActionsInTime(date)
             .collect { actions ->
                _incomeActions.value = actions.filter { it.category == Category.INCOME }
-               _incomeSum.value = _incomeActions.value.map { it.amount }.sum()
+               _incomeSum.value = _incomeActions.value.map { it.amount }.sum().toInt()
                _paidActions.value = actions.filter { it.category != Category.INCOME }
-               _paidSum.value = _paidActions.value.map { it.amount }.sum()
+               _paidSum.value = _paidActions.value.map { it.amount }.sum().toInt()
                _savedMoney.value = _incomeSum.value - _paidSum.value
             }
       }
    }
-
-//   fun setDateFilter(dateFilter: DateFilter) {
-//      _dateFilterFlow.value = dateFilter
-//   }
 
    fun setDateFilter(dateFilter: Int) {
       when (dateFilter) {
