@@ -162,7 +162,8 @@ class SummaryFragment : Fragment() {
       binding.incomeBarChart.xAxis.setDrawAxisLine(false)
       //remove right y-axis
       binding.incomeBarChart.axisRight.isEnabled = false
-      binding.incomeBarChart.axisLeft.isEnabled = false
+      binding.incomeBarChart.axisLeft.isEnabled = true
+      binding.incomeBarChart.axisLeft.axisMinimum= 0f//spaceBottom = 2f
       //remove legend
       binding.incomeBarChart.legend.isEnabled = false
       //remove description label
