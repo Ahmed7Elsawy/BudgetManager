@@ -18,4 +18,4 @@ Budget manager system is an application to save your income and payment and get 
 https://user-images.githubusercontent.com/32717670/145492492-35a0d240-d705-4162-b16e-e015e4f15ed5.mp4
 
 
-https://studio.youtube.com/video/FsdFUqGNxHg/edit
+https://youtu.be/FsdFUqGNxHg
