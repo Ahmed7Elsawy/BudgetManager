@@ -15,7 +15,7 @@ Budget manager system is an application to save your income and payment and get 
 ## Screenshot
 
 ![Alt text](https://github.com/Ahmed7Elsawy/BudgetManager/blob/master/budget.png?raw=true "Optional Title")
-
+ 
 
 ## Demo
 
